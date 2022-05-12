@@ -24,15 +24,6 @@ export function Pagination() {
           bg="gray.700"
           _hover={{ bg: "gray.500" }}
         >
-          1
-        </Button>
-        <Button
-          size="sm"
-          fontSize="xs"
-          width="4"
-          bg="gray.700"
-          _hover={{ bg: "gray.500" }}
-        >
           2
         </Button>
         <Button
