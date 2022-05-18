@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Link from "next/link";
 
 import {
@@ -24,9 +25,8 @@ import { Sidebar } from "../../components/Sidebar";
 import { useUsers } from "../../services/hooks/useUsers";
 
 export default function UserList() {
-  const { data, isLoading, isRefetching, error } = useUsers();
-
-  console.log(data);
+  const [page, setPage] = useState(1);
+  const { data, isLoading, isRefetching, error } = useUsers(page);
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -85,7 +85,7 @@ export default function UserList() {
                 </Thead>
 
                 <Tbody>
-                  {data.map((user) => (
+                  {data.users.map((user) => (
                     <>
                       <Tr>
                         <Td px={["4", "4", "6"]}>
@@ -122,9 +122,9 @@ export default function UserList() {
               </Table>
 
               <Pagination
-                totalCountOfRegisters={200}
-                currentPage={5}
-                onPageChange={() => {}}
+                totalCountOfRegisters={data.totalCount}
+                currentPage={page}
+                onPageChange={setPage}
               />
             </>
           )}
